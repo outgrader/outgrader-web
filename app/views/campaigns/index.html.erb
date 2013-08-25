@@ -1,0 +1,36 @@
+<h1>Customer - <%= @customer.name %>. Campaigns</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+    </tr>
+    <tr>
+      <th>Title</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Budget</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @campaigns.each do |campaign| %>
+      <tr>
+        <td><%= campaign.title %></td>
+        <td><%= campaign.start_date %></td>
+        <td><%= campaign.end_date %></td>
+        <td><%= campaign.budget %></td>
+        <td><%= campaign.status %></td>
+        <td><%= link_to 'Show', customer_campaign_path(params[:customer_id], campaign.id) %></td>
+        <td><%= link_to 'Edit', edit_customer_campaign_path(params[:customer_id], campaign.id) %></td>
+        <td><%= link_to 'Destroy', customer_campaign_path(params[:customer_id], campaign.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Campaign', new_customer_campaign_path %>
+<%= link_to 'Back to Customers', customers_path %>

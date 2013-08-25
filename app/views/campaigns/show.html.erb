@@ -1,0 +1,11 @@
+<p id="notice"><%= notice %></p>
+
+<p><%= @campaign.title%></p>
+<p><%= @campaign.start_date%></p>
+<p><%= @campaign.end_date%></p>
+<p><%= @campaign.budget%></p>
+<p><%= @campaign.status%></p>
+
+
+<%= link_to 'Back', customer_campaigns_path(params[:customer_id]) %> |
+<%= link_to 'Edit', edit_customer_campaign_path(params[:customer_id], params[:id]) %>
