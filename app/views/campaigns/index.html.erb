@@ -1,19 +1,20 @@
-<h1>Customer - <%= @customer.name %>. Campaigns</h1>
+<%- model_class = Campaign -%>
 
-<table>
+<div class="page-header">
+  <h1>Campaigns: <%= @customer.name %></h1>
+</div>
+
+<table class="table table-striped">
   <thead>
     <tr>
-      <th></th>
-    </tr>
-    <tr>
-      <th>Title</th>
-      <th>Start Date</th>
-      <th>End Date</th>
-      <th>Budget</th>
-      <th>Status</th>
+      <th><%= model_class.human_attribute_name(:title) %></th>
+      <th><%= model_class.human_attribute_name(:start_date) %></th>
+      <th><%= model_class.human_attribute_name(:end_date) %></th>
+      <th><%= model_class.human_attribute_name(:budget) %></th>
+      <th><%= model_class.human_attribute_name(:status) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
     <% @campaigns.each do |campaign| %>
       <tr>
@@ -22,15 +23,21 @@
         <td><%= campaign.end_date %></td>
         <td><%= campaign.budget %></td>
         <td><%= campaign.status %></td>
-        <td><%= link_to 'Show', customer_campaign_path(params[:customer_id], campaign.id) %></td>
-        <td><%= link_to 'Edit', edit_customer_campaign_path(params[:customer_id], campaign.id) %></td>
-        <td><%= link_to 'Destroy', customer_campaign_path(params[:customer_id], campaign.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_customer_campaign_path(params[:customer_id], campaign.id), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      customer_campaign_path(params[:customer_id], campaign.id),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Campaign', new_customer_campaign_path %>
-<%= link_to 'Back to Customers', customers_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_customer_campaign_path,
+            :class => 'btn btn-primary' %>
+<%= link_to 'Back to Customers', customers_path, :class => 'btn btn-primary' %>
