@@ -1,11 +1,11 @@
 <%- model_class = Campaign -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+  <h3><%= t '.title', :default => model_class.model_name.human.titleize %> details</h3>
 </div>
 
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:customer_id) %>:</strong></dt>
-  <dd><%= @campaign.customer_id %></dd>
+  <dd><%= @customer.name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
   <dd><%= @campaign.title %></dd>
   <dt><strong><%= model_class.human_attribute_name(:start_date) %>:</strong></dt>
@@ -20,12 +20,79 @@
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
-              campaigns_path, :class => 'btn'  %>
+              customer_campaigns_path(params[:customer_id]), :class => 'btn' %>
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_campaign_path(@campaign), :class => 'btn' %>
+              edit_customer_campaign_path(params[:customer_id], params[:id]), :class => 'btn' %>
   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              campaign_path(@campaign),
+              customer_campaign_path(params[:customer_id], params[:id]),
               :method => 'delete',
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :data => {:confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))},
               :class => 'btn btn-danger' %>
 </div>
+
+
+<div class="accordion" id="campaign_properties">
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#campaign_properties" href="#collapseOne">
+        Site Groups
+      </a>
+    </div>
+    <div id="collapseOne" class="accordion-body collapse">
+      <div class="accordion-inner">
+        Anim pariatur cliche...
+        <%= link_to t('.new', :default => t("helpers.links.new")),
+                    edit_customer_campaign_path(params[:customer_id], params[:id]), :class => 'btn btn-primary' %>
+
+      </div>
+    </div>
+  </div>
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#campaign_properties" href="#collapseTwo">
+        Banners
+      </a>
+    </div>
+    <div id="collapseTwo" class="accordion-body collapse">
+      <div class="accordion-inner">
+        <dl class="dl-horizontal">
+          <% @banners.each do |banner| %>
+              <div class="row">
+
+                <div class="span6">
+                  <dt><strong>URL:</strong></dt>
+                  <dd><%= banner.url %></dd>
+                  <dt><strong>X size:</strong></dt>
+                  <dd><%= banner.size_x %></dd>
+                  <dt><strong>Y size:</strong></dt>
+                  <dd><%= banner.size_y %></dd>
+                  <hr>
+                </div>
+                <div class="span4">
+                  <div class="form-actions">
+                    <%= link_to t('.back', :default => t("helpers.links.back")),
+                                customer_campaigns_path(params[:customer_id]), :class => 'btn' %>
+                    <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                                edit_customer_campaign_path(params[:customer_id], params[:id]), :class => 'btn' %>
+                    <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                                customer_campaign_path(params[:customer_id], params[:id]),
+                                :method => 'delete',
+                                :data => {:confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))},
+                                :class => 'btn btn-danger' %>
+                  </div>
+                </div>
+
+              </div>
+          <% end %>
+
+        </dl>
+        <%= link_to t('.new', :default => t("helpers.links.new")),
+                    edit_customer_campaign_path(params[:customer_id], params[:id]), :class => 'btn btn-primary' %>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

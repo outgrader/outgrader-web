@@ -12,6 +12,9 @@ class CampaignsController < ApplicationController
   # GET /campaigns/1
   # GET /campaigns/1.json
   def show
+    @banners = @campaign.Banners.all
+    @customer = Customer.where(:id => @campaign.customer_id).first
+
   end
 
   # GET /campaigns/new

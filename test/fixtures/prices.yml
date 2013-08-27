@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  price_for_thousand: 9.99
+  start_date: 2013-08-26
+  end_date: 2013-08-26
+
+two:
+  price_for_thousand: 9.99
+  start_date: 2013-08-26
+  end_date: 2013-08-26

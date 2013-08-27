@@ -11,7 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130824114508) do
+ActiveRecord::Schema.define(version: 20130826085522) do
+
+  create_table "ad_places", force: true do |t|
+    t.decimal  "size_x"
+    t.decimal  "size_y"
+    t.integer  "site_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "banners", force: true do |t|
+    t.string   "url"
+    t.decimal  "size_x"
+    t.decimal  "size_y"
+    t.integer  "customer_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "banners_campaigns", force: true do |t|
+    t.integer "Campaign_id"
+    t.integer "Banner_id"
+  end
 
   create_table "campaigns", force: true do |t|
     t.integer  "customer_id"
@@ -53,5 +75,36 @@ ActiveRecord::Schema.define(version: 20130824114508) do
 
   add_index "managers", ["email"], name: "index_managers_on_email", unique: true
   add_index "managers", ["reset_password_token"], name: "index_managers_on_reset_password_token", unique: true
+
+  create_table "prices", force: true do |t|
+    t.decimal  "price_for_thousand"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "SiteGroup_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "site_groups", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "site_groups_campaigns", force: true do |t|
+    t.integer "SiteGroup_id"
+    t.integer "Campaign_id"
+  end
+
+  create_table "site_groups_sites", force: true do |t|
+    t.integer "SiteGroup_id"
+    t.integer "Site_id"
+  end
+
+  create_table "sites", force: true do |t|
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

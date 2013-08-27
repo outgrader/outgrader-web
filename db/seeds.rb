@@ -8,7 +8,7 @@
 
 include Faker
 
-[Customer, Campaign].each do |a|
+[Customer, Campaign, Banner].each do |a|
   a.delete_all
 end
 
@@ -35,9 +35,20 @@ end
     a.budget = rand (1000..5000)
     a.status = status[rand(0..2)]
     a.customer_id= Customer.first!.id + rand(0..Customer.count-1)
+
+    rand(0..10).times do
+      b = a.Banners.new
+      b.size_x = rand(300..600)
+      b.size_y = rand(300..600)
+      b.url = Internet.url
+      b.customer_id = a.customer_id
+      b.save
+      puts b.inspect
+    end
     a.save
     puts a.inspect
 
- end
+  end
+
 
 
