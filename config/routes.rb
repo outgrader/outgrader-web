@@ -1,10 +1,15 @@
 OutgraderWeb::Application.routes.draw do
 
-
-  devise_for :managers
+devise_for :managers
 
   resources :customers do
-    resources :campaigns
+    resources :campaigns do
+      resources :banners do
+         member do
+           get 'add'
+         end
+      end
+    end
   end
 
 

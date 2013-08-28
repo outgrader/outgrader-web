@@ -1,0 +1,61 @@
+<%- model_class = Banner -%>
+<div class="page-header">
+  <h1><%= t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize %></h1>
+</div>
+
+
+<%= form_for @banner, url: customer_campaign_banners_path, :html => {:class => 'form-horizontal'} do |f| %>
+    <div class="control-group">
+      <%= f.label :url, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :url, :class => 'text_field' %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :size_x, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :size_x, :class => 'text_field' %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :size_y, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :size_y, :class => 'text_field' %>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                  customer_campaign_path(params[:customer_id], params[:campaign_id]), :class => 'btn' %>
+    </div>
+<% end %>
+
+<dl class="dl-horizontal">
+  <% @this_customer_banners.each do |banner| %>
+      <% if banner.Campaigns.where(:id => params[:campaign_id]).empty? %>
+          <div class="row">
+
+            <div class="span6">
+              <dt><strong>URL:</strong></dt>
+              <dd><%= banner.url %></dd>
+              <dt><strong>X size:</strong></dt>
+              <dd><%= banner.size_x %></dd>
+              <dt><strong>Y size:</strong></dt>
+              <dd><%= banner.size_y %></dd>
+              <hr>
+            </div>
+            <div class="span4">
+              <div class="form-actions">
+                <%= link_to t('.add', :default => t("helpers.links.add")),
+                            add_customer_campaign_banner_path(params[:customer_id], params[:campaign_id], banner.id), :class => 'btn' %>
+              </div>
+            </div>
+
+          </div>
+      <% end %>
+  <% end %>
+
+</dl>
+
+

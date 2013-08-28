@@ -2,10 +2,10 @@
 
 one:
   url: MyString
-  size_x: 9.99
-  size_y: 9.99
+  size_x: MyString
+  size_y: MyString
 
 two:
   url: MyString
-  size_x: 9.99
-  size_y: 9.99
+  size_x: MyString
+  size_y: MyString

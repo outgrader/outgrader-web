@@ -12,6 +12,7 @@ en:
       new: "New"
       edit: "Edit"
       campaigns: "Campaigns"
+      add: "Add this one"
     titles:
       edit: "Edit %{model}"
       save: "Save %{model}"

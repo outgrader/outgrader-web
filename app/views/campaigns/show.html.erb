@@ -70,15 +70,11 @@
                 </div>
                 <div class="span4">
                   <div class="form-actions">
-                    <%= link_to t('.back', :default => t("helpers.links.back")),
-                                customer_campaigns_path(params[:customer_id]), :class => 'btn' %>
-                    <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                                edit_customer_campaign_path(params[:customer_id], params[:id]), :class => 'btn' %>
                     <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                                customer_campaign_path(params[:customer_id], params[:id]),
+                                customer_campaign_banner_path(params[:customer_id], @campaign.id, banner.id),
                                 :method => 'delete',
                                 :data => {:confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))},
-                                :class => 'btn btn-danger' %>
+                                :class => 'btn' %>
                   </div>
                 </div>
 
@@ -87,7 +83,7 @@
 
         </dl>
         <%= link_to t('.new', :default => t("helpers.links.new")),
-                    edit_customer_campaign_path(params[:customer_id], params[:id]), :class => 'btn btn-primary' %>
+                    new_customer_campaign_banner_path(params[:customer_id], params[:id]), :class => 'btn btn-primary' %>
 
       </div>
     </div>
